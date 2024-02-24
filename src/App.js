@@ -9,7 +9,6 @@ const App = () => {
   const [coins, updateCoins] = useState([]);
 
   // Define function to all API
-
   const fetchCoins = async () => {
     const restOperation = await get({
       apiName: "cryptoapi",
