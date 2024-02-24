@@ -9,13 +9,13 @@ const App = () => {
   const [coins, updateCoins] = useState([]);
 
   // Define function to all API
-  async function fetchCoins() {
-    //Get request with latest Amplify
+
+  const fetchCoins = async () => {
     const restOperation = await get({
       apiName: "cryptoapi",
       path: "/coins"
     });
-    // Source: https://docs.amplify.aws/react/build-a-backend/restapi/fetch-data/#accessing-response-payload
+
     const { body } = await restOperation.response;
     const json = await body.json();
     updateCoins(json.coins);
