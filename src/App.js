@@ -11,6 +11,9 @@ const App = () => {
   // Create additional state to hold user input for limit and start properties
   const [input, updateInput] = useState({ limit: 5, start: 0 });
 
+  //reate a variable for loading
+  const [loading, updateLoading] = useState(true);
+
   // Create a new function to allow users to update the input values
   function updateInputValues(type, value) {
     updateInput({ ...input, [type]: value });
@@ -18,6 +21,7 @@ const App = () => {
 
   // Define function to all API
   const fetchCoins = async () => {
+    updateLoading(true)
     const { limit, start } = input
     //Get request with latest Amplify
     const restOperation = await get({
@@ -34,6 +38,7 @@ const App = () => {
     const { body } = await restOperation.response;
     const json = await body.json();
     updateCoins(json.coins);
+    updateLoading(false)
   }
 
   // Call fetchCoins function when component loads
@@ -52,8 +57,9 @@ const App = () => {
         placeholder="limit"
       />
       <button onClick={fetchCoins}>Fetch Coins</button>
+      {loading && <h2>Loading...</h2>}
       {
-        coins.map((coin, index) => (
+        !loading && coins.map((coin, index) => (
           <div key={index}>
             <h2>{coin.name} - {coin.symbol}</h2>
             <h5>${coin.price_usd}</h5>
