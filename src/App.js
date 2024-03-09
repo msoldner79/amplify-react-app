@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 // Source: https://docs.amplify.aws/react/build-a-backend/restapi/fetch-data/
 import { get } from 'aws-amplify/api';
+import { Born } from './GitHubBornOn';
 import './App.css';
 
 const App = () => {
@@ -66,6 +67,7 @@ const App = () => {
           </div>
         ))
       }
+      <Born />
     </div>
   );
 }
