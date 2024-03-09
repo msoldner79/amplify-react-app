@@ -57,7 +57,7 @@ const App = () => {
         onChange={e => updateInputValues('limit', e.target.value)}
         placeholder="limit"
       />
-      <button onClick={fetchCoins}>Fetch Coins</button>
+      <button onClick={fetchCoins} >Fetch Coins</button>
       {loading && <h2>Loading...</h2>}
       {
         !loading && coins.map((coin, index) => (
